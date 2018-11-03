@@ -1,0 +1,2 @@
+python3 build_voc2012_data.py --image_folder=./VOC2007/JPEGImages \--semantic_segmentation_folder=./VOC2007/SegmentationClass \--list_folder=./VOC2007/ImageSets/Segmentation \ --output_dir=./VOC2007/tfrecord
+

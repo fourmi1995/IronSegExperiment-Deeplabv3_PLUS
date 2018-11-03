@@ -1,0 +1,66 @@
+权重下载地址：https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md
+
+cd ~/anaconda3/envs/zpy/lib/python3.6/site-packages/tensorflow/models/research
+cd /home/liushixin/AI/chendali/shengjunGao/Dataset
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+
+
+python ./build_voc2012_data.py \
+--image_folder="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_Camvid/image/" \
+--semantic_segmentation_folder="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_Camvid/mask/" \
+--list_folder="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_Camvid/" \
+--image_format="png" \
+--output_dir="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_Camvid/"
+
+
+python deeplab/train.py \ --logtostderr \
+--training_number_of_steps=50000 \
+--train_split="train" \
+--model_variant="xception_71" \
+--atrous_rates=6 \
+--atrous_rates=12 \
+--atrous_rates=18 \
+--output_stride=16 \
+--decoder_output_stride=4 \
+--train_crop_size=513 \
+--train_crop_size=513 \
+--train_batch_size=2 \
+--dataset="camvid" \
+--tf_initial_checkpoint='/home/liushixin/anaconda3/envs/zpy/lib/python3.6/site-packages/tensorflow/models/research/deeplab/datasets/init_models/deeplabv3_pascal_train_aug/model.ckpt' \
+--train_logdir='/home/liushixin/AI/chendali/shengjunGao/Dataset/train' \
+--dataset_dir='/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_Camvid'
+
+
+python deeplab/vis.py \ --logtostderr \
+--vis_split="val" \
+--model_variant="xception_71" \
+--atrous_rates=6 \
+--atrous_rates=12 \
+--atrous_rates=18 \
+--output_stride=8 \
+--decoder_output_stride=4 \
+--vis_crop_size=360 \
+--vis_crop_size=480 \
+--dataset="camvid" \
+--colormap_type="pascal" \
+--checkpoint_dir='/home/liushixin/AI/chendali/shengjunGao/Dataset/train' \
+--vis_logdir='/home/liushixin/AI/chendali/shengjunGao/Dataset/vis' \
+--dataset_dir='/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_Camvid'
+
+
+CUDA_VISIBLE_DEVICES="" python deeplab/eval.py \ --logtostderr \
+--eval_split="val" \
+--model_variant="xception_71" \
+--atrous_rates=6 \
+--atrous_rates=12 \
+--atrous_rates=18 \
+--output_stride=8 \
+--decoder_output_stride=4 \
+--eval_crop_size=360 \
+--eval_crop_size=480 \
+--dataset="camvid" \
+--checkpoint_dir='/home/liushixin/AI/chendali/shengjunGao/Dataset/train' \
+--eval_logdir='/home/liushixin/AI/chendali/shengjunGao/Dataset//eval' \
+--dataset_dir='/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_Camvid'
+
+

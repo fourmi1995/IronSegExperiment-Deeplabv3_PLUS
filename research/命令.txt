@@ -1,0 +1,27 @@
+python build_voc2012_data.py \
+--image_folder="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_VOC/imgs/" \
+--semantic_segmentation_folder="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_VOC/label/" \
+--list_folder="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_VOC/" \
+--image_format="jpg" \
+--output_dir="/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_VOC/"
+
+# https://blog.csdn.net/u011974639/article/details/80948990
+
+
+
+
+
+python vis.py \
+  --logtostderr \
+  --vis_split="test" \
+  --model_variant="xception_65" \
+  --atrous_rates=6 \
+  --atrous_rates=12 \
+  --atrous_rates=18 \
+  --output_stride=16 \
+  --decoder_output_stride=4 \
+  --vis_crop_size=513 \
+  --vis_crop_size=513 \
+  --checkpoint_dir="${/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_VOC/models/}" \
+  --vis_logdir="${/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_VOC/logs/}" \
+  --dataset_dir="${/home/liushixin/AI/chendali/shengjunGao/Dataset/IronData_VOC/}"
