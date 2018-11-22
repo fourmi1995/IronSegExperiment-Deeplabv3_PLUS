@@ -14,11 +14,6 @@ The [tutorials folder](tutorials) is a collection of models described in the [Te
 
 If you want to contribute to models, be sure to review the [contribution guidelines](CONTRIBUTING.md).
 
-## License
 
-[Apache License 2.0](LICENSE)
-# IronSegExperiment-Deeplabv3-
-# IronSegExperiment-Deeplabb3plus
-# IronSegExperiment-Deeplabb3plus
 
 原github网址：https://github.com/rishizek/tensorflow-deeplab-v3-plus
